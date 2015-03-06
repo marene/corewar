@@ -1,0 +1,52 @@
+NAME =			asm
+CC =			gcc
+LIB =			ft
+LIB_DIR =		../libft/
+LIB_INCLUDES =	$(LIB_DIR)includes/
+LIBFT =			$(LIB_DIR)libft.a
+INCLUDES =		./includes/
+CFLAGS =		-Wall -Wextra -Werror\
+				-I$(LIB_INCLUDES) -I$(INCLUDES) -c -g -o
+LDFLAGS =		-L$(LIB_DIR) -l$(LIB) -o
+SRC_DIR =		./srcs/
+OBJ_DIR =		./obj/
+SRCS =			main.c					states.c\
+				token_flow_init.c		lexer.c\
+				error.c					error_msg.c\
+				add_to_flow.c			env_init.c\
+				get_next_action.c		get_next_line.c\
+				token_create.c			gen_opcode.c\
+				gen_dir_num.c			gen_ind_num.c\
+				gen_register.c			gen_dir_label.c\
+				gen_ind_label.c			gen_stda_label.c\
+				gen_cor.c				parser.c\
+				insert_header.c
+
+OBJ =			$(SRCS:.c=.o)
+
+all: $(LIBFT) $(OBJ_DIR) $(NAME)
+
+$(LIBFT):
+	make -C $(LIB_DIR)
+
+$(OBJ_DIR):
+	mkdir $@
+
+$(NAME): $(addprefix $(OBJ_DIR), $(OBJ))
+	$(CC) $(LDFLAGS) $@ $^
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) $(CFLAGS) $@ $<
+
+clean:
+	rm -rf $(OBJ_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean libre all
+
+libre:
+	make -C $(LIB_DIR) re
+
+.PHONY: all clean fclean libre
