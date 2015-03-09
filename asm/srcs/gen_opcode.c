@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 13:26:36 by marene            #+#    #+#             */
-/*   Updated: 2015/02/14 15:31:59 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 16:37:57 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int				gen_opcode(t_token *flow, t_env *env)
 		if ((value = get_op_value(cont)) != 0)
 		{
 			if ((new_op = token_create(cont, value, T_OPCODE, OP_SIZE * BYTE)))
+			{
+				free(cont);
 				return (add_to_flow(env, flow, new_op));
+			}
 			else
 				set_serror(env, UNKNOWN);
 		}
@@ -51,5 +54,6 @@ int				gen_opcode(t_token *flow, t_env *env)
 	}
 	else
 		set_serror(env, UNKNOWN);
+	free(cont);
 	return (ASM_KO);
 }

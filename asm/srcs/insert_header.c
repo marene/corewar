@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 11:43:36 by marene            #+#    #+#             */
-/*   Updated: 2015/03/04 11:56:04 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 16:46:19 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int						insert_header(int fd, t_token *flow)
 	ft_strcpy(head->comment, comment);
 	head->prog_size = change_endianess(get_prog_size(flow));
 	write(fd, head, sizeof(*head));
+	free(head);
 	return (ASM_OK);
 }

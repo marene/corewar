@@ -1,7 +1,7 @@
 NAME =				test
 CC =				/usr/bin/gcc
 LIB =				ft
-LIB_DIR =			../../libft/
+LIB_DIR =			../libft/
 LIB_INCLUDES =		$(LIB_DIR)includes/
 LIBFT =				$(LIB_DIR)libft.a
 INCLUDES =			./includes/

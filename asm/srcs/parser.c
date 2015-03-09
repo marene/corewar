@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 11:56:23 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 12:40:19 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 17:49:12 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ int					parser(t_token *flow)
 	t_token		*head;
 	t_env		*env;
 
-	env = env_init();
-	if (flow)
+	if (flow && (env = env_init()))
 	{
 		head = get_head(flow);
 		flow = head;
@@ -98,12 +97,14 @@ int					parser(t_token *flow)
 			if ((flow->type == T_OPCODE
 						&& check_args(env, head, flow) == ASM_KO))
 			{
-				free(env->line);
+				env_delete(&env);
 				return (ASM_KO);
 			}
 			free(env->line);
+			env->line = NULL;
 			flow = flow->next;
 		}
 	}
+	env_delete(&env);
 	return (ASM_OK);
 }

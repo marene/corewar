@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 14:03:05 by marene            #+#    #+#             */
-/*   Updated: 2015/02/23 11:46:39 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 18:09:03 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct		s_op
 	int			arg_nb;
 	t_arg_type	args[3];
 	int			op_val;
-	int			stuff; /* TODO: Get to know what the f*ck this sh*t is*/
+	int			stuff;
 	char		*description;
 	int			encoding_byte;
 	int			change_carry;

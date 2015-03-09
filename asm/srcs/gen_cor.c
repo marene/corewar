@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 16:01:32 by marene            #+#    #+#             */
-/*   Updated: 2015/03/06 15:32:31 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 16:50:11 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void			write_bytes(int fd, int val, int size)
 			mask <<= 8;
 		}
 		write(fd, to_write, size);
+		free(to_write);
 	}
 }
 
@@ -71,7 +72,11 @@ static int		cor_init(t_token *flow, int *fd)
 	filename = ft_strjoin(flow->content, ".cor");
 	if ((*fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0755)) > 0
 			&& insert_header(*fd, flow) == ASM_OK)
+	{
+		free(filename);
 		return (ASM_OK);
+	}
+	free(filename);
 	return (ASM_KO);
 }
 

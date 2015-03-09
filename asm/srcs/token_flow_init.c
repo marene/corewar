@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:02:05 by marene            #+#    #+#             */
-/*   Updated: 2015/03/06 15:44:27 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 16:33:00 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int		add_name(t_token *flow, char *content)
 		name = token_create(tmp, 0, T_NAME, 0);
 		add_to_flow(NULL, flow, name);
 		free(tmp);
+		free(epur);
 		return (ASM_OK);
 	}
 	else
@@ -59,6 +60,7 @@ static int		add_comment(t_token *flow, char *content)
 		comment = token_create(tmp, 0, T_COM, 0);
 		add_to_flow(NULL, flow, comment);
 		free(tmp);
+		free(epur);
 		return (ASM_OK);
 	}
 	else
@@ -101,6 +103,7 @@ static int		get_content(t_token *new_flow, char *content, char *nc)
 	}
 	else if (!is_comment(content))
 		return (ASM_KO);
+	free(content);
 	return (ASM_OK);
 }
 
@@ -111,8 +114,7 @@ t_token			*token_flow_init(t_env *env, char *file_name, int fd)
 	char		nc[2];
 	int			len;
 
-	nc[0] = 0;
-	nc[1] = 0;
+	ft_memset(nc, 0, 2 * sizeof(char));
 	len = ft_strlen(file_name);
 	new_flow = NULL;
 	if (len > 2 && file_name[len - 1] == 's' && file_name[len - 2] == '.')

@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 12:37:04 by marene            #+#    #+#             */
-/*   Updated: 2015/02/20 19:17:37 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 16:38:28 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ int				gen_dir_num(t_token *flow, t_env *env)
 	{
 		value = ft_atoi(cont);
 		if ((new = token_create(cont, value, T_DIR_NUM, DIR_SIZE * BYTE)))
+		{
+			free(cont);
 			return (add_to_flow(env, flow, new));
+		}
 		else
 			set_serror(env, UNKNOWN);
 	}
 	else
 		set_serror(env, UNKNOWN);
+	free(cont);
 	return (ASM_KO);
 }

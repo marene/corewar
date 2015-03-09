@@ -20,7 +20,8 @@ SRCS =			main.c					states.c\
 				gen_register.c			gen_dir_label.c\
 				gen_ind_label.c			gen_stda_label.c\
 				gen_cor.c				parser.c\
-				insert_header.c			make_line.c
+				insert_header.c			make_line.c\
+				env_delete.c
 
 OBJ =			$(SRCS:.c=.o)
 

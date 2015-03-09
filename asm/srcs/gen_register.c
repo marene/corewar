@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 13:44:00 by marene            #+#    #+#             */
-/*   Updated: 2015/02/20 18:38:39 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 16:39:04 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int				gen_register(t_token *flow, t_env *env)
 		if ((value = ft_atoi(cont)) > 0 && value <= REG_NUMBER)
 		{
 			if ((new = token_create(cont, value, T_REGISTER, BYTE)))
+			{
+				free(cont);
 				return (add_to_flow(env, flow, new));
+			}
 			else
 				set_serror(env, UNKNOWN);
 		}
@@ -35,5 +38,6 @@ int				gen_register(t_token *flow, t_env *env)
 	}
 	else
 		set_serror(env, UNKNOWN);
+	free(cont);
 	return (ASM_KO);
 }

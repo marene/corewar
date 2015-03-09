@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 11:51:52 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 11:51:39 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 17:40:58 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ char			*get_serror_msg(t_serror code);
 int				add_to_flow(t_env *env, t_token *flow, t_token *new);
 t_arg_type		get_argtype(t_type arg);
 char			*make_line(t_token *flow);
+void			env_delete(t_env **env);
 
 int				foo(t_token *flow, t_env *env);
 
