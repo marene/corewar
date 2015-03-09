@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/25 12:26:26 by marene            #+#    #+#             */
-/*   Updated: 2015/03/05 14:39:25 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 12:53:59 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define COMMENT_MAX_LEN	80
 
 int							gen_valid_test(int fd);
-int							gen_invalid_test(int fd);
+int							gen_invalid_test(int fd, int err);
 int							insert_line(int fd, t_op op, int *err);
 int							insert_name_comment(int fd);
 void						insert_whitespaces(int fd, int n);

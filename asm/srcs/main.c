@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 11:51:28 by marene            #+#    #+#             */
-/*   Updated: 2015/03/04 11:47:35 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/06 15:34:18 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include <asm.h>
 #include <error.h>
 
-# include <stdio.h>
-
-/*
-** line 21: if (argc == 2): Will need to be modified to if (argc >= 2) if
-** assembling options are ever impplemented
-*/
 t_op	g_op_table[17] =
 {
 	{"live", 1, {T_DIR, 0, 0}, 1, 10, "alive", 0, 0},
@@ -40,8 +34,8 @@ t_op	g_op_table[17] =
 			| T_REG}, 11, 25, "store index", 1, 1},
 	{"fork", 1, {T_INDEX | T_DIR, 0, 0}, 12, 800, "fork", 0, 1},
 	{"lld", 2, {T_DIR | T_IND, T_REG, 0}, 13, 10, "long load", 1, 0},
-	{"lldi", 3, {T_INDEX | T_REG | T_DIR | T_IND, T_INDEX | T_DIR | T_REG, T_REG}, 14, 50, /* Added T_INDEX type two first two params of lldi */
-		"long load index", 1, 1},
+	{"lldi", 3, {T_INDEX | T_REG | T_DIR | T_IND, T_INDEX | T_DIR | T_REG,
+			T_REG}, 14, 50, "long load index", 1, 1},
 	{"lfork", 1, {T_INDEX | T_DIR, 0, 0}, 15, 1000, "long fork", 0, 1},
 	{"aff", 1, {T_REG, 0, 0}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
@@ -72,26 +66,7 @@ char	*gettype(t_type t)
 	else
 		return (NULL);
 }
-/*
-void	print_flow(t_token *flow)
-{
-	t_token		*args;
 
-	while (flow)
-	{
-		args = flow->args;
-		printf("content = %s\ntype = %s\nsize = %d\n", flow->content, gettype(flow->type), flow->size);
-		while (args)
-		{
-			printf("\tcontent = %s\n\ttype = %s\n\tsize = %d", args->content, gettype(args->type), args->size);
-			args = args->args;
-			printf("\n");
-		}
-		flow = flow->next;
-		printf("\n");
-	}
-}
-*/
 int		main(int argc, char **argv)
 {
 	t_env		*env;

@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/25 11:58:09 by marene            #+#    #+#             */
-/*   Updated: 2015/03/05 14:11:43 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 12:50:47 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		main(void)
 			printf("%s could not be generated\n", test_ok);
 		if ((fd = open(test_ko, O_WRONLY | O_CREAT | O_TRUNC, 0755)) >= 0)
 		{
-			gen_invalid_test(fd);
+			gen_invalid_test(fd, i % 16);
 			insert_label(CLEAR_LABELS);
 			printf("%s generated\n", test_ko);
 			free(test_ko);

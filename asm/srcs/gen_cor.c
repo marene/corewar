@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 16:01:32 by marene            #+#    #+#             */
-/*   Updated: 2015/03/04 11:50:01 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/06 15:32:31 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,24 @@ int				gen_cor(t_token *flow)
 	t_token		*args;
 	int			fd;
 
-	if (cor_init(flow, &fd) == ASM_OK)
+	if (cor_init(flow, &fd) == ASM_KO && set_error(COR_FILE) >= 0)
+		return (ASM_KO);
+	while (flow)
 	{
-		while (flow)
+		if (flow->type == T_OPCODE)
 		{
-			if (flow->type == T_OPCODE)
+			args = flow->args;
+			write_bytes(fd, flow->value, flow->size);
+			if (g_op_table[flow->value - 1].encoding_byte)
+				write_bytes(fd, get_encoding_byte(flow), 1);
+			while (args)
 			{
-				args = flow->args;
-				write_bytes(fd, flow->value, flow->size);
-				if (g_op_table[flow->value - 1].encoding_byte)
-					write_bytes(fd, get_encoding_byte(flow), 1);
-				while (args)
-				{
-					write_bytes(fd, args->value, args->size);
-					args = args->args;
-				}
+				write_bytes(fd, args->value, args->size);
+				args = args->args;
 			}
-			flow = flow->next;
 		}
-		close(fd);
-		return (ASM_OK);
+		flow = flow->next;
 	}
-	set_error(COR_FILE);
-	return (ASM_KO);
+	close(fd);
+	return (ASM_OK);
 }

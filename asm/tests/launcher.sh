@@ -1,8 +1,8 @@
 #!/bin/sh
 
-path_to_test="/nfs/zfs-student-3/users/2013/marene/rendu/rattrapage/corewar/asm/tests"
-path_to_ft_asm="/nfs/zfs-student-3/users/2013/marene/rendu/rattrapage/corewar/asm"
-path_to_asm="/nfs/zfs-student-3/users/2013/marene/rendu/rattrapage/corewar/asm/champions"
+path_to_test="/nfs/zfs-student-3/users/2013/marene/github/corewar/asm/tests"
+path_to_ft_asm="/nfs/zfs-student-3/users/2013/marene/github/corewar/asm"
+path_to_asm="/nfs/zfs-student-3/users/2013/marene/github/corewar/asm/champions"
 tester=$path_to_test"/test"
 ft_asm=$path_to_ft_asm"/asm"
 asm=$path_to_asm"/asm"

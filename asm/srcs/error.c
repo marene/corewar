@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:04:38 by marene            #+#    #+#             */
-/*   Updated: 2015/02/27 20:10:22 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 11:53:22 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,24 @@ static void		print_line(char *line, int colnum, t_serror serror)
 	int		i;
 
 	i = 0;
+	(void)serror;
 	while (line[i])
 	{
 		if (i == colnum)
 		{
 			ft_putstr(T_YELLOW);
-			if (serror >= U_OPCODE)
-				while (line[i] != ' ' && line[i] != '\t')
-				{
-					ft_putchar(line[i]);
-					i++;
-				}
-			else
+			while (line[i] && line[i] != ' ' && line[i] != '\t')
 			{
 				ft_putchar(line[i]);
 				i++;
 			}
 			ft_putstr(T_DEFAULT);
 		}
-		ft_putchar(line[i]);
-		i++;
+		if (line[i])
+		{
+			ft_putchar(line[i]);
+			i++;
+		}
 	}
 }
 
@@ -76,15 +74,12 @@ void			print_serror(void)
 		ft_putstr(get_serror_msg(env->syntax->serror));
 		ft_putstr(" at line ");
 		ft_putnbr(env->syntax->linum);
-		if (env->syntax->serror < W_PARAM_TYPE)
+		if (env->line)
 		{
 			ft_putstr(", column ");
 			ft_putnbr(env->syntax->colnum);
-			if (env->line)
-			{
-				ft_putstr("\n\t");
-				print_line(env->line, env->syntax->colnum, env->syntax->serror);
-			}
+			ft_putstr("\n\t");
+			print_line(env->line, env->syntax->colnum, env->syntax->serror);
 		}
 		ft_putchar('\n');
 	}

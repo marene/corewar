@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:25:23 by marene            #+#    #+#             */
-/*   Updated: 2015/02/27 10:48:11 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 12:51:17 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void		insert_bad_name_comment(int fd)
 	}
 }
 
-int				gen_invalid_test(int fd)
+int				gen_invalid_test(int fd, int err)
 {
 	int			i;
 	int			j;
@@ -91,7 +91,10 @@ int				gen_invalid_test(int fd)
 	}
 	while (i < 16)
 	{
-		t = ERR;
+		if (i == err)
+			t = ERR;
+		else
+			t = NO_ERR;
 		j = 0;
 		while (j < OP_REP_NB)
 		{

@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 11:56:23 by marene            #+#    #+#             */
-/*   Updated: 2015/03/03 18:03:12 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/09 12:40:19 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,22 @@ static int			check_args(t_env *env, t_token *head, t_token *flow)
 	arg_nb = 0;
 	op = g_op_table[flow->value - 1];
 	args = flow->args;
-	if (flow->arg_nb != op.arg_nb)
-	{
-		set_serror(env, W_PARAM_NB);
+	if (flow->arg_nb != op.arg_nb && set_serror(env, W_PARAM_NB) != NULL)
 		return (ASM_KO);
-	}
 	while (args)
 	{
 		if ((args->type == T_DIR_LABEL || args->type == T_IND_LABEL)
 				&& (replace_label(env, head, flow, args)) == ASM_KO)
 			return (ASM_KO);
-		if ((op.args[arg_nb] & get_argtype(args->type)) == 0)
+		if ((op.args[arg_nb++] & get_argtype(args->type)) == 0)
 		{
 			set_serror(env, W_PARAM_TYPE);
 			return (ASM_KO);
 		}
+		env->syntax->colnum += ft_strlen(args->content) + 2;
+		env->syntax->colnum += (args->type >= T_REGISTER
+				&& args->type < T_STDA_LABEL) ? 1 : 0;
 		args = args->args;
-		++arg_nb;
 	}
 	return (ASM_OK);
 }
@@ -94,9 +93,15 @@ int					parser(t_token *flow)
 		while (flow)
 		{
 			env->syntax->linum = flow->linum;
+			env->syntax->colnum = ft_strlen(flow->content) + 1;
+			env->line = make_line(flow);
 			if ((flow->type == T_OPCODE
 						&& check_args(env, head, flow) == ASM_KO))
+			{
+				free(env->line);
 				return (ASM_KO);
+			}
+			free(env->line);
 			flow = flow->next;
 		}
 	}

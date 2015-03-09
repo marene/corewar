@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:02:05 by marene            #+#    #+#             */
-/*   Updated: 2015/03/02 18:39:05 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/06 15:44:27 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,35 @@ static int		is_comment(char *s)
 	return ((s[i] == '#') ? 1 : 0);
 }
 
+static int		get_content(t_token *new_flow, char *content, char *nc)
+{
+	char	*tmp;
+
+	if ((tmp = ft_strstr(content, NAME_CMD_STRING)) != NULL)
+	{
+		if (((nc[0] != 0 && tmp < ft_strchr(content, '"'))
+					|| add_name(new_flow, content) == ASM_KO))
+			return (ASM_KO);
+		else
+			nc[0] = 1;
+	}
+	else if ((tmp = ft_strstr(content, COMMENT_CMD_STRING)) != NULL)
+	{
+		if (((nc[1] != 0 && tmp < ft_strchr(content, '"'))
+					|| add_comment(new_flow, content) == ASM_KO))
+			return (ASM_KO);
+		else
+			nc[1] = 1;
+	}
+	else if (!is_comment(content))
+		return (ASM_KO);
+	return (ASM_OK);
+}
+
 t_token			*token_flow_init(t_env *env, char *file_name, int fd)
 {
 	t_token		*new_flow;
 	char		*content;
-	char		*tmp;
 	char		nc[2];
 	int			len;
 
@@ -100,23 +124,7 @@ t_token			*token_flow_init(t_env *env, char *file_name, int fd)
 		while ((!nc[0] || !nc[1]) && get_next_line(fd, &content) == 1)
 		{
 			++(env->syntax->linum);
-			if ((tmp = ft_strstr(content, NAME_CMD_STRING)) != NULL)
-			{
-				if (((nc[0] != 0 && tmp < ft_strchr(content, '"'))
-						|| add_name(new_flow, content) == ASM_KO))
-					return (NULL);
-				else
-					nc[0] = 1;
-			}
-			else if ((tmp = ft_strstr(content, COMMENT_CMD_STRING)) != NULL)
-			{
-				if (((nc[1] != 0 && tmp < ft_strchr(content, '"'))
-						|| add_comment(new_flow, content) == ASM_KO))
-					return (NULL);
-				else
-					nc[1] = 1;
-			}
-			else if (!is_comment(content))
+			if (get_content(new_flow, content, nc) == ASM_KO)
 				return (NULL);
 		}
 	}
