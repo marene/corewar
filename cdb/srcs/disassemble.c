@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 15:08:38 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 12:53:05 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 14:04:33 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 extern t_op		g_op_table[17];
 
+/*
 static void		print_encoding(unsigned char *encoding)
 {
 	int		i;
@@ -25,11 +26,8 @@ static void		print_encoding(unsigned char *encoding)
 	i = 0;
 	while (i < 3)
 	{
-		ft_putstr(" [");
-		ft_putnbr(encoding[i]);
-		ft_putstr("] ");
 		if ((encoding[i] & ~CDB_INDEX) == REG_CODE)
-			ft_putstr(" register ");
+			ft_putchar('r');
 		else if ((encoding[i] & ~CDB_INDEX) == DIR_CODE)
 			ft_putstr(" direct ");
 		else if ((encoding[i] & ~CDB_INDEX) == IND_CODE)
@@ -42,6 +40,7 @@ static void		print_encoding(unsigned char *encoding)
 	}
 	ft_putchar('\n');
 }
+*/
 
 static void		copy_op_args(t_op op, unsigned char *encoding)
 {
@@ -96,17 +95,14 @@ static int		get_encoding(int fd, t_op op, unsigned char *encoding)
 	}
 	else
 		copy_op_args(op, encoding);
-	print_encoding(encoding);
 	return (CDB_OK);
 }
 
 static int		get_op(int fd, char b, unsigned char *encoding)
 {
 	int		i;
-	char	mask;
 
 	i = 0;
-	mask = 0x30;
 	while (i < 16)
 	{
 		if (g_op_table[i].op_val == b)
@@ -134,8 +130,6 @@ int				disassemble(int fd)
 	while (read(fd, &b, 1) > 0)
 	{
 		ft_bzero(encoding, sizeof(unsigned char) * 3);
-		if (encoding[0] || encoding[1] || encoding[2])
-			ft_putendl("ENCODING NOT ZEROED!");
 		if (get_op(fd, b, encoding) == CDB_OK)
 		{
 			if (get_args(fd, encoding) == CDB_KO)

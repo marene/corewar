@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 12:09:57 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 12:49:01 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 14:18:49 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 
 static int	get_arg_size(unsigned char encoding, int *size)
 {
-	if ((encoding & REG_CODE) != 0)
-		{
-			ft_putchar('r');
-			*size = 1;
-		}
-		else if ((encoding & DIR_CODE) != 0)
-		{
-			ft_putchar(C_DIRECT_CHAR);
-			*size = ((encoding & CDB_INDEX) == 0) ? DIR_SIZE : IND_SIZE;
-		}
-		else if ((encoding & IND_CODE) != 0)
-			*size = IND_SIZE;
-		else
-			return (CDB_KO);
-		return (CDB_OK);
+	if ((encoding & ~CDB_INDEX) == IND_CODE)
+		*size = IND_SIZE;
+	else if ((encoding & ~CDB_INDEX) == DIR_CODE)
+	{
+		ft_putchar(C_DIRECT_CHAR);
+		*size = ((encoding & CDB_INDEX) == 0) ? DIR_SIZE : IND_SIZE;
+	}
+	else if ((encoding & ~CDB_INDEX) == REG_CODE)
+	{
+		ft_putchar('r');
+		*size = 1;
+	}
+	else
+		return (CDB_KO);
+	return (CDB_OK);
 }
 
 int			get_args(int fd, unsigned char *encoding)
@@ -47,7 +47,11 @@ int			get_args(int fd, unsigned char *encoding)
 			ft_bzero(&val, sizeof(int));
 			if (read(fd, &val, size) != size)
 				return (CDB_KO);
-			ft_putnbr(change_endianess(val));
+			if (size == 4)
+				val = change_endianess(val);
+			else if (size == 2)
+				val = swap(val);
+			ft_putnbr(val);
 			if (i + 1 < 3 && encoding[i + 1] != 0)
 				ft_putstr(", ");
 		}

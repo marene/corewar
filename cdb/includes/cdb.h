@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 15:00:42 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 12:12:06 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 14:03:15 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 int					disassemble(int fd);
 int					get_args(int fd, unsigned char *encoding);
 unsigned int		change_endianess(unsigned int val);
+unsigned int		swap(unsigned int val);
 
 #endif

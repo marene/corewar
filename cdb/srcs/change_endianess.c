@@ -6,9 +6,19 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 12:12:26 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 12:12:35 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 14:02:57 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+unsigned int		swap(unsigned int val)
+{
+	unsigned int	a0;
+	unsigned int	a1;
+
+	a0 = (val & 0x000000ff) << 8;
+	a1 = (val & 0x0000ff00) >> 8;
+	return (a0 | a1);
+}
 
 unsigned int		change_endianess(unsigned int val)
 {
