@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 12:09:57 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 12:43:56 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 12:49:01 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	get_arg_size(unsigned char encoding, int *size)
 {
 	if ((encoding & REG_CODE) != 0)
 		{
-			ft_putstr("register");
+			ft_putchar('r');
 			*size = 1;
 		}
 		else if ((encoding & DIR_CODE) != 0)
