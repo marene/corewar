@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:34:41 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 10:34:42 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 16:05:54 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		check_dump(char *str)
 			CEXIT("invalide value after -dump.");
 }
 
-void	load_flag(int *argc, char ***argv)
+void			load_flag(int *argc, char ***argv)
 {
 	if (*argc >= 1)
 	{

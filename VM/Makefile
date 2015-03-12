@@ -26,7 +26,8 @@ SRCS =				main.c					arena.c\
 					init_arg.c				load_flag.c\
 					load_path.c				load_prog.c\
 					move_process.c			op.c\
-					player.c				process.c
+					player.c				process.c\
+					sort_player.c
 OBJ =				$(SRCS:.c=.o)
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)

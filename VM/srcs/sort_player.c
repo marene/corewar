@@ -6,11 +6,15 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 15:13:43 by marene            #+#    #+#             */
-/*   Updated: 2015/03/12 15:24:40 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 16:03:20 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+#define FT_SWAP(A, B) ((A ^= B), (B ^= A), (A ^= B))
+
+#define FT_SWAP_PTR(A, B) (ft_swap_ptr((void **)&A, (void **)&B))
 
 void	sort_player(char **path, int *pos, int *take, int n)
 {
