@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 11:51:28 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 17:47:29 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 12:59:10 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,6 @@ t_op	g_op_table[17] =
 	{"aff", 1, {T_REG, 0, 0}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
-
-char	*gettype(t_type t)
-{
-	if (t == T_BEGIN)
-		return ("T_BEGIN");
-	else if (t == T_NAME)
-		return ("T_NAME");
-	else if (t == T_COM)
-		return ("T_COM");
-	else if (t == T_OPCODE)
-		return ("T_OPCODE");
-	else if (t == T_IND_NUM)
-		return ("T_IND_NUM");
-	else if (t == T_IND_LABEL)
-		return ("T_IND_LABEL");
-	else if (t == T_REGISTER)
-		return ("T_REGISTER");
-	else if (t == T_DIR_NUM)
-		return ("T_DIR_NUM");
-	else if (t == T_DIR_LABEL)
-		return ("T_DIR_LABEL");
-	else if (t == T_STDA_LABEL)
-		return ("T_STDA_LABEL");
-	else
-		return (NULL);
-}
 
 int		main(int argc, char **argv)
 {
