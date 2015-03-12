@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/03 11:08:27 by marene            #+#    #+#             */
-/*   Updated: 2015/02/19 14:27:51 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 16:59:03 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*get_error_msg(t_error code)
 	"fatal error: file does not exist or is not readable",
 	"missing .name",
 	"missing .comment",
+	"name and / or comment too big",
 	"fatal error: .cor file could not be created",
 	"champion is too big: .cor file not created",
 	"no error",

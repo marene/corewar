@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:18:58 by marene            #+#    #+#             */
-/*   Updated: 2015/02/19 14:24:13 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 16:53:52 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum	e_error
 	W_FILE,
 	M_NAME,
 	M_COMMENT,
+	NC_TOO_BIG,
 	COR_FILE,
 	PROG_TOO_BIG,
 	NO_ERROR,

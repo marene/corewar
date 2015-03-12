@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:04:38 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 11:53:22 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 17:00:34 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_error			set_error(t_error code)
 {
 	static t_error	last_error = NO_ERROR;
 
-	if (code != NO_ERROR)
+	if (code != NO_ERROR && last_error == NO_ERROR)
 		last_error = code;
 	return (last_error);
 }
