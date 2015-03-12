@@ -1,37 +1,57 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/11/03 19:45:10 by nperrin           #+#    #+#              #
-#    Updated: 2014/12/17 23:15:36 by nperrin          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME =				corewar
+CC =				gcc
+LIB =				ft
+LIB_DIR =			./libft/
+LIB_INCLUDES =		$(LIB_DIR)includes/
+LIBFT =				$(LIB_DIR)libft.a
+INCLUDES =			./includes/
+CFLAGS =			-Wall -Wextra -Werror\
+					-I$(LIB_INCLUDES) -I$(INCLUDES) -c -g -o
+LDFLAGS =			-L$(LIB_DIR) -l$(LIB) -o
+SRC_DIR =			./srcs/
+OBJ_DIR =			./obj/
+SRCS =				main.c					arena.c\
+					arg.c					cadd.c\
+					caff.c					cand.c\
+					cdata.c					cfork.c\
+					champion.c				check.c\
+					check.c					cld.c\
+					cldi.c					clfork.c\
+					clive.c					clld.c\
+					clldi.c					cor.c\
+					cp_champion.c			cst.c\
+					csti.c					csub.c\
+					cxor.c					czjmp.c\
+					dump_mem.c				exec_process.c\
+					init_arg.c				load_flag.c\
+					load_path.c				load_prog.c\
+					move_process.c			op.c\
+					player.c				process.c
+OBJ =				$(SRCS:.c=.o)
 
-NAME = 	corewar
+all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
-SRC = 	srcs/*.c\
-		srcs/**/*.c
+$(LIBFT):
+	make -C $(LIB_DIR)
 
-OBJ = 	*.o
+$(OBJ_DIR):
+	mkdir $@
 
-FLG	=	-Wall -Werror -Wextra
+$(NAME): $(addprefix $(OBJ_DIR), $(OBJ))
+	$(CC) $(LDFLAGS) $@ $^
 
-INC	=	includes/
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) $(CFLAGS) $@ $<
 
-all		: $(NAME)
+clean:
+	rm -rf $(OBJ_DIR)
 
-$(NAME)	:
-		make -C libft/
-		gcc $(FLG) -c $(SRC) -I $(INC) -I libft/includes
-		gcc -o $(NAME) $(OBJ) -L libft -lft -I $(INC) -I libft/includes
-
-clean	:
-	rm -f $(OBJ)
-
-fclean	: clean
+fclean: clean
 	rm -f $(NAME)
 
-re		: fclean $(NAME)
+re: fclean libre all
+
+libre:
+	make -C $(LIB_DIR) re
+
+.PHONY: all clean fclean libre
