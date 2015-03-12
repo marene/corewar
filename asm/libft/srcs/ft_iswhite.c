@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/17 19:10:39 by marene            #+#    #+#             */
-/*   Updated: 2015/02/26 13:14:39 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 09:04:07 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int		ft_iswhite(char c)
 {
 	if (ft_strchr(BLANK_CHARS, c) != NULL)
-	return (1);
+		return (1);
 	return (0);
 }

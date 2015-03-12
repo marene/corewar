@@ -6,12 +6,13 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 15:11:03 by marene            #+#    #+#             */
-/*   Updated: 2014/01/11 16:14:08 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 09:05:04 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+
 void	*ft_memalloc(size_t size)
 {
 	long	*ptr;

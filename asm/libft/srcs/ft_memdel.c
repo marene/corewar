@@ -6,12 +6,13 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 15:17:12 by marene            #+#    #+#             */
-/*   Updated: 2013/12/06 18:57:26 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 09:06:18 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+
 void	ft_memdel(void **ap)
 {
 	if (ap)

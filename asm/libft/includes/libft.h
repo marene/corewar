@@ -6,12 +6,13 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/20 22:33:09 by marene            #+#    #+#             */
-/*   Updated: 2014/05/18 14:27:50 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 09:05:55 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 /*
 ** this header contains all the prototypes required for the creation of libft.a
 ** libft.a is a very usefull archives which contains re-coded libc functions,

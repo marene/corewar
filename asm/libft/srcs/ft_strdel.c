@@ -6,12 +6,13 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 15:24:07 by marene            #+#    #+#             */
-/*   Updated: 2014/04/15 10:55:31 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 09:05:35 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+
 void	ft_strdel(char **as)
 {
 	if (as != NULL)
