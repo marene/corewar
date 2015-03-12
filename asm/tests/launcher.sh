@@ -39,7 +39,7 @@ then
 			for file in $allKo # Starting test with valid syntax source files
 			do
 				let "koTest = $koTest + 1"
-				echo "\033[A\033[2K\033[0;34mkoTest [$koTest / $total]\033[0m"
+				echo "\033[A\033[2K\033[0;34mkoTests: $koTest tests, $discarded discarded, $success success, $fail fails\033[0m"
 				$asm "$path_to_test/$file" >> $launcher_log
 				cor=`echo $file | cut -d'.' -f1`
 				if [ -f "$path_to_test/$cor.cor" ]
@@ -56,7 +56,7 @@ then
 				fi
 			done
 
-		echo "\nkoTests: $koTest tests, $discarded discarded, $success success, $fail fails"
+		echo "\n"
 		echo ""
 		let "success = 0"
 		let "fail = 0"
@@ -70,7 +70,7 @@ then
 		for file in $allOk # Starting test with valid syntax source files
 		do
 			let "okTest = $okTest + 1"
-			echo "\033[A\033[2K\033[0;34mokTest [$okTest / $total]\033[0m"
+			echo "\033[A\033[2K\033[0;34mokTests: $okTest tests, $discarded discarded, $success success, $fail fails, $invalid_dump invalid dumps\033[0m"
 			$asm "$path_to_test/$file" >> $launcher_log
 			cor=`echo $file | cut -d'.' -f1`
 			if [ -f "$path_to_test/$cor.cor" ]
@@ -95,7 +95,7 @@ then
 				let "discarded = $discarded + 1"
 			fi
 		done
-		echo "\nokTests: $okTest tests, $discarded discarded, $success success, $fail fails, $invalid_dump invalid dumps"
+		echo "\n"
 		else
 			echo "$ft_asm is not executable"
 		fi
