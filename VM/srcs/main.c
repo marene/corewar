@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:33:54 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/12 13:00:38 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/12 15:24:08 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void		apply_process(void)
 		exec_process(lst->content);
 		lst = lst->next;
 	}
-
 }
 
 static void		game(void)
@@ -48,7 +47,7 @@ static void		game(void)
 	ft_flush_stdout();
 }
 
-t_player	*get_winner(void)
+t_player		*get_winner(void)
 {
 	unsigned	i;
 	t_player	*best;
@@ -69,22 +68,27 @@ t_player	*get_winner(void)
 		return (best);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_player	*winner;
 
-	init_game(argc - 1, argv + 1);
-	game();
-	winner = get_winner();
-	if (!winner)
-		ft_putstr("Egalite\n");
-	else
+	if (argc >= 2)
 	{
-		ft_putstr("le joueur "), ft_putchar(winner->id + '0');
-		ft_putchar('('), ft_putstr(winner->header.prog_name);
-		ft_putchar(')');
-		ft_putstr(" a gagne\n");
+		init_game(argc - 1, argv + 1);
+		game();
+		winner = get_winner();
+		if (!winner)
+			ft_putstr("Egalite\n");
+		else
+		{
+			ft_putstr("le joueur "), ft_putchar(winner->id + '0');
+			ft_putchar('('), ft_putstr(winner->header.prog_name);
+			ft_putchar(')');
+			ft_putstr(" a gagne\n");
+		}
+		ft_flush_stdout();
 	}
-	ft_flush_stdout();
+	else
+		write(1, USAGE, ft_strlen(USAGE));
 	return (0);
 }

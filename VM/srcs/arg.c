@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 09:03:53 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 09:03:55 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 15:07:10 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ int					cget_arg(int n)
 	else if (g_type[n] == DIR_CODE)
 		return (g_value[n]);
 	else if (g_type[n] == IND_CODE)
-		return (CGET_MEM(g_process->cur_op->is_mod
-			? (g_value[n] % IDX_MOD)
-			: g_value[n], int));
+		return (CGET_MEM(g_process->cur_op->is_mod ? (g_value[n] % IDX_MOD)
+		: g_value[n], int));
 	return (0);
 }
 

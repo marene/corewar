@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 11:02:21 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 11:02:23 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 15:21:03 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,36 +79,6 @@ void	check_player_id(int *pos, int n)
 	}
 }
 
-void	sort_player(char **path, int *pos, int *take, int n)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < n)
-	{
-		if (pos[i] == -1)
-		{
-			j = 0;
-			while (take[j])
-				j++;
-			pos[i] = j + 1;
-			take[j] = 1;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < n - 1)
-		if (pos[i] > pos[i + 1])
-		{
-			FT_SWAP(pos[i], pos[i + 1]);
-			FT_SWAP_PTR(path[i], path[i + 1]);
-			i = 0;
-		}
-		else
-			i++;
-}
-
 char	**load_path(char **argv)
 {
 	unsigned		i;
@@ -118,7 +88,7 @@ char	**load_path(char **argv)
 
 	i = 0;
 	ft_bzero(take, sizeof(int) * MAX_PLAYERS);
-	while(*argv)
+	while (*argv)
 	{
 		if (i >= MAX_PLAYERS)
 			CEXIT("too many arguments.");
