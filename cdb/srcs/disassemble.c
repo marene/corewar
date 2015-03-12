@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 15:08:38 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 14:04:33 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/11 15:29:38 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,7 @@
 #include <op.h>
 #include <cdb.h>
 
-# include <stdio.h>
-
 extern t_op		g_op_table[17];
-
-/*
-static void		print_encoding(unsigned char *encoding)
-{
-	int		i;
-
-	i = 0;
-	while (i < 3)
-	{
-		if ((encoding[i] & ~CDB_INDEX) == REG_CODE)
-			ft_putchar('r');
-		else if ((encoding[i] & ~CDB_INDEX) == DIR_CODE)
-			ft_putstr(" direct ");
-		else if ((encoding[i] & ~CDB_INDEX) == IND_CODE)
-			ft_putstr(" indirect ");
-		else if (encoding[i] != 0)
-			ft_putstr(" unknown ");
-		else
-			ft_putstr(" - ");
-		++i;
-	}
-	ft_putchar('\n');
-}
-*/
 
 static void		copy_op_args(t_op op, unsigned char *encoding)
 {
