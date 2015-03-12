@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:33:54 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 10:33:55 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 13:00:38 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void		game(void)
 {
 	while (N_PROC)
 	{
-	//	printf("proc = %ld, ctd = %ld, cycle = %ld, live = %ld\n", N_PROC, CTD, CYCLE, N_LIVE);
 		apply_process();
 		check();
 	}
