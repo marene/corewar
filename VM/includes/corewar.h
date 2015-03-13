@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 04:49:56 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 04:49:57 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 16:03:57 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include "champion.h"
 # include "cop.h"
 # include "arg.h"
+
+# define USG "usage: "
+# define USAGE USG "./corewar [-dump nbr_cycles] [[-n number] champion1.cor]\n"
 
 # define CVIDEO 1
 # define CDUMP 2
@@ -65,4 +68,6 @@ void				load_flag(int *argc, char ***argv);
 char				**load_path(char **argv);
 void				init_data(void);
 void				check(void);
+void				sort_player(char **path, int *pos, int *take, int n);
+void				ft_swap_ptr(void **a, void **b);
 #endif

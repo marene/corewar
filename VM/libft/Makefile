@@ -6,7 +6,7 @@
 #    By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 19:45:10 by nperrin           #+#    #+#              #
-#    Updated: 2014/12/17 23:15:36 by nperrin          ###   ########.fr        #
+#    Updated: 2015/03/12 14:54:41 by marene           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -203,7 +203,7 @@ INC	=	includes/
 all		: $(NAME)
 
 $(NAME)	:
-		gcc -c $(SRC) $(FLG) -I $(INC)
+		gcc -c -g $(SRC) $(FLG) -I $(INC)
 		ar rc $(NAME) $(OBJ)
 		ranlib $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 05:38:20 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 05:38:21 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 14:48:08 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void			add_process(long pc, t_player *p)
 	proc.player->n_proc++;
 	get_arena()->data[proc.reg.pc].n_proc++;
 }
-
 
 t_list			**get_process_lst(void)
 {

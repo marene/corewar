@@ -6,15 +6,11 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 11:02:21 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/03 11:02:23 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 16:03:09 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-#define FT_SWAP(A, B) ((A ^= B), (B ^= A), (A ^= B))
-
-#define FT_SWAP_PTR(A, B) (ft_swap_ptr((void **)&A, (void **)&B))
 
 void	check_path(char *path)
 {
@@ -45,7 +41,7 @@ void	ft_swap_ptr(void **a, void **b)
 	*b = tmp;
 }
 
-void	check_value(char *str)
+int		check_value(char *str)
 {
 	if (!str)
 		CEXIT("expected valuer after -n.");
@@ -54,6 +50,7 @@ void	check_value(char *str)
 			str++;
 		else
 			CEXIT("invalide value after -n.");
+	return (1);
 }
 
 void	check_player_id(int *pos, int n)
@@ -79,63 +76,31 @@ void	check_player_id(int *pos, int n)
 	}
 }
 
-void	sort_player(char **path, int *pos, int *take, int n)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < n)
-	{
-		if (pos[i] == -1)
-		{
-			j = 0;
-			while (take[j])
-				j++;
-			pos[i] = j + 1;
-			take[j] = 1;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < n - 1)
-		if (pos[i] > pos[i + 1])
-		{
-			FT_SWAP(pos[i], pos[i + 1]);
-			FT_SWAP_PTR(path[i], path[i + 1]);
-			i = 0;
-		}
-		else
-			i++;
-}
-
 char	**load_path(char **argv)
 {
 	unsigned		i;
-	int				take[MAX_PLAYERS];
 	static char		*path[MAX_PLAYERS];
-	int				pos[MAX_PLAYERS];
+	int				t_p[2][MAX_PLAYERS];
 
 	i = 0;
-	ft_bzero(take, sizeof(int) * MAX_PLAYERS);
-	while(*argv)
+	ft_bzero(t_p[0], sizeof(int) * MAX_PLAYERS);
+	while (*argv)
 	{
 		if (i >= MAX_PLAYERS)
 			CEXIT("too many arguments.");
-		if (!ft_strcmp(*argv, "-n"))
+		if (!ft_strcmp(*argv, "-n") && check_value(*(++argv)))
 		{
-			check_value(*(++argv));
-			if (((pos[i] = ft_atoi(*argv)) <= 0) ? 1 : pos[i] > MAX_PLAYERS)
+			if ((t_p[1][i] = ft_atoi(*argv)) <= 0 || t_p[1][i] > MAX_PLAYERS)
 				CEXIT("invalide value after -n.");
 			argv++;
-			take[pos[i] - 1] = 1;
+			t_p[0][t_p[1][i] - 1] = 1;
 		}
 		else
-			pos[i] = -1;
+			t_p[1][i] = -1;
 		path[i] = *argv++;
 		check_path(path[i++]);
 	}
-	check_player_id(pos, i);
-	sort_player((char **)path, pos, take, i);
+	check_player_id(t_p[1], i);
+	sort_player((char **)path, t_p[1], t_p[0], i);
 	return ((char **)path);
 }

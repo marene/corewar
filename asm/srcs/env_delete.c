@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 17:39:24 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 17:41:45 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/13 14:46:36 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 void		env_delete(t_env **env)
 {
-	free((*env)->line);
-	free((*env)->syntax);
-	free((*env));
-	*env = NULL;
+	if (*env)
+	{
+		free((*env)->line);
+		free((*env)->syntax);
+		free((*env));
+		*env = NULL;
+	}
 }

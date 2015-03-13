@@ -6,7 +6,7 @@
 /*   By: nperrin <nperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 00:43:25 by nperrin           #+#    #+#             */
-/*   Updated: 2015/03/05 00:43:26 by nperrin          ###   ########.fr       */
+/*   Updated: 2015/03/12 15:07:34 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void		cp_champion(t_champ *champ, long pos, unsigned c)
 		i++;
 	}
 }
-
