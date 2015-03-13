@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 11:51:28 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 17:47:29 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/13 14:47:36 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,57 +41,55 @@ t_op	g_op_table[17] =
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
 
-char	*gettype(t_type t)
+static void		prepare_to_parse(char *arg, t_env *env)
 {
-	if (t == T_BEGIN)
-		return ("T_BEGIN");
-	else if (t == T_NAME)
-		return ("T_NAME");
-	else if (t == T_COM)
-		return ("T_COM");
-	else if (t == T_OPCODE)
-		return ("T_OPCODE");
-	else if (t == T_IND_NUM)
-		return ("T_IND_NUM");
-	else if (t == T_IND_LABEL)
-		return ("T_IND_LABEL");
-	else if (t == T_REGISTER)
-		return ("T_REGISTER");
-	else if (t == T_DIR_NUM)
-		return ("T_DIR_NUM");
-	else if (t == T_DIR_LABEL)
-		return ("T_DIR_LABEL");
-	else if (t == T_STDA_LABEL)
-		return ("T_STDA_LABEL");
-	else
-		return (NULL);
-}
-
-int		main(int argc, char **argv)
-{
-	t_env		*env;
-	t_token		*flow;
 	int			fd;
+	t_token		*flow;
 
-	if (argc == 2 && (env = env_init()) != NULL)
+	ft_putstr(arg);
+	ft_putstr(": ");
+	if ((fd = open(arg, O_RDONLY)) >= 0)
 	{
-		action_table_init();
-		if ((fd = open(argv[1], O_RDONLY)) >= 0)
+		if ((flow = token_flow_init(env, arg, fd)) != NULL)
 		{
-			if ((flow = token_flow_init(env, argv[1], fd)) != NULL)
+			if (lexer(env, fd, flow) == ASM_KO || parser(flow) == ASM_KO)
+				print_serror();
+			else
 			{
-				if (lexer(env, fd, flow) == ASM_KO || parser(flow) == ASM_KO)
-					print_serror();
-				else
-					gen_cor(flow);
+				if (gen_cor(flow) == ASM_OK)
+					ft_putstr("cor file generated");
 			}
-			close(fd);
 		}
-		else
-			set_error(W_FILE);
+		close(fd);
 	}
 	else
-		set_error(W_USAGE);
+		set_error(W_FILE);
 	print_error();
+	ft_putchar('\n');
+}
+
+int				main(int argc, char **argv)
+{
+	t_env		*env;
+	int			i;
+
+	action_table_init();
+	if (argc >= 2)
+	{
+		i = 0;
+		while (argv[++i])
+		{
+			if ((env = env_init()) != NULL)
+				prepare_to_parse(argv[i], env);
+			env_delete(&env);
+			set_error(RESET);
+			set_serror(NULL, S_RESET);
+		}
+	}
+	else
+	{
+		set_error(W_USAGE);
+		print_error();
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:04:38 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 17:00:34 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/13 14:44:50 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ t_env			*set_serror(t_env *env, t_serror code)
 {
 	static t_env		*e = NULL;
 
-	if (env && code != NO_SERROR)
+	if (code == S_RESET)
+		env_delete(&e);
+	else if (env && code != NO_SERROR)
 	{
 		if (!e)
 		{
@@ -89,7 +91,9 @@ t_error			set_error(t_error code)
 {
 	static t_error	last_error = NO_ERROR;
 
-	if (code != NO_ERROR && last_error == NO_ERROR)
+	if (code == RESET)
+		last_error = NO_ERROR;
+	else if (code != NO_ERROR && last_error == NO_ERROR)
 		last_error = code;
 	return (last_error);
 }

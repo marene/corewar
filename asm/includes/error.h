@@ -6,7 +6,7 @@
 /*   By: marene <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/24 12:18:58 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 16:53:52 by marene           ###   ########.fr       */
+/*   Updated: 2015/03/13 14:44:56 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum	e_error
 	COR_FILE,
 	PROG_TOO_BIG,
 	NO_ERROR,
+	RESET,
 	UNKNOWN
 }				t_error;
 
@@ -45,6 +46,7 @@ typedef enum	e_serror
 	W_PARAM_NB,
 	W_PARAM_VAL,
 	NO_SERROR,
+	S_RESET,
 	UNKNOWN_SERROR
 }				t_serror;
 
