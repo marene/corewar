@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 16:42:29 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 16:38:15 by marene           ###   ########.fr       */
+/*   Updated: 2016/02/19 15:51:17 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int				gen_dir_label(t_token *flow, t_env *env)
 	char		*cont;
 	t_token		*new_token;
 
+	cont = NULL;
 	if (env->begin < env->end
 			&& (cont = ft_strsub(env->line, env->begin, env->end - env->begin)))
 	{
@@ -28,10 +29,10 @@ int				gen_dir_label(t_token *flow, t_env *env)
 			return (add_to_flow(env, flow, new_token));
 		}
 		else
-			set_serror(env, UNKNOWN);
+			set_serror(env, UNKNOWN_SERROR);
 	}
 	else
-		set_serror(env, UNKNOWN);
+		set_serror(env, UNKNOWN_SERROR);
 	free(cont);
 	return (ASM_KO);
 }

@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:48:38 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 16:38:50 by marene           ###   ########.fr       */
+/*   Updated: 2016/02/19 15:50:57 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int				gen_ind_num(t_token *flow, t_env *env)
 	int			value;
 	t_token		*new;
 
+	cont = NULL;
 	if (env->begin < env->end
 			&& (cont = ft_strsub(env->line, env->begin, env->end - env->begin)))
 	{
@@ -30,10 +31,10 @@ int				gen_ind_num(t_token *flow, t_env *env)
 			return (add_to_flow(env, flow, new));
 		}
 		else
-			set_serror(env, UNKNOWN);
+			set_serror(env, UNKNOWN_SERROR);
 	}
 	else
-		set_serror(env, UNKNOWN);
+		set_serror(env, UNKNOWN_SERROR);
 	free(cont);
 	return (ASM_KO);
 }

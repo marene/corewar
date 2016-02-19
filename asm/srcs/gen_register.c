@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 13:44:00 by marene            #+#    #+#             */
-/*   Updated: 2015/03/09 16:39:04 by marene           ###   ########.fr       */
+/*   Updated: 2016/02/19 16:12:48 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int				gen_register(t_token *flow, t_env *env)
 	int			value;
 	t_token		*new;
 
+	cont = NULL;
 	if (env->begin < env->end
 			&& (cont = ft_strsub(env->line, env->begin, env->end - env->begin)))
 	{
@@ -31,13 +32,13 @@ int				gen_register(t_token *flow, t_env *env)
 				return (add_to_flow(env, flow, new));
 			}
 			else
-				set_serror(env, UNKNOWN);
+				set_serror(env, UNKNOWN_SERROR);
 		}
 		else
 			set_serror(env, W_REG_NB);
 	}
 	else
-		set_serror(env, UNKNOWN);
+		set_serror(env, UNKNOWN_SERROR);
 	free(cont);
 	return (ASM_KO);
 }

@@ -6,7 +6,7 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 16:01:32 by marene            #+#    #+#             */
-/*   Updated: 2015/03/11 16:59:41 by marene           ###   ########.fr       */
+/*   Updated: 2016/02/19 16:15:33 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				gen_cor(t_token *flow)
 	t_token		*args;
 	int			fd;
 
-	if (cor_init(flow, &fd) == ASM_KO && set_error(COR_FILE) >= 0)
+	if (cor_init(flow, &fd) == ASM_KO && set_error(COR_FILE) != NO_ERROR)
 		return (ASM_KO);
 	while (flow)
 	{
